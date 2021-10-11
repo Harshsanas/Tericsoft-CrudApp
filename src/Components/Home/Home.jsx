@@ -6,7 +6,6 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell'; 
 import TableContainer from '@material-ui/core/TableContainer';  
 import TableHead from '@material-ui/core/TableHead';  
-import TablePagination from '@material-ui/core/TablePagination';  
 import TableRow from '@material-ui/core/TableRow';  
 import axios from 'axios';
 import { useState, useEffect } from 'react'   
@@ -24,8 +23,6 @@ const useStyles = makeStyles({
 });  
 export default function Home() {  
   const classes = useStyles(); 
-  const [page, setPage] = React.useState(0);  
-  const [rowsPerPage, setRowsPerPage] = React.useState(5); 
   const [list, setList] = useState({});
 
   useEffect(() => {
@@ -37,15 +34,6 @@ export default function Home() {
       })
       .catch((err) => console.log(err));
   });
-  const handleChangePage = (event, newPage) => { 
-    setPage(newPage);  
-  };
-  const handleChangeRowsPerPage = event => {  
-    setRowsPerPage(+event.target.value);  
-    setPage(0);  
-  };  
-
-  
     const handleDelete = (id) => {
       axios
         .delete(`https://mytericsoftserver.herokuapp.com/data/${id}`)
@@ -54,6 +42,7 @@ export default function Home() {
         })
         .catch((err) => console.log(err));
     };
+    
   return (
     <Paper className={classes.root}>
       <TableContainer className={classes.container}>
@@ -87,15 +76,6 @@ export default function Home() {
           </TableBody>
         </Table>
       </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[5, 10, 15]}
-        component="div"
-        count={list.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
-      />
     </Paper>
   );  
 

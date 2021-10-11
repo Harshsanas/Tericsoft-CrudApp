@@ -51,7 +51,7 @@ const NAVBAR = styled.div`
     font-size: 14px;
     cursor: pointer;
     color: #49018c;
-    font-weight: 600;
+    font-weight: 500;
     padding: 5px 15px;
     border-radius: 4px;
   }
@@ -209,13 +209,13 @@ export default function Navbar() {
                   value="Female"
                   control={<Radio />}
                   label="Female"
-                  name="female"
+                  name="gender"
                   onChange={handleChange}
                 />
                 <FormControlLabel
                   value="Male"
                   control={<Radio />}
-                  name="male"
+                  name="gender"
                   label="Male"
                   onChange={handleChange}
                 />
@@ -224,7 +224,7 @@ export default function Navbar() {
                   control={<Radio />}
                   onChange={handleChange}
                   label="Other"
-                  name="other"
+                  name="gender"
                 />
               </RadioGroup>
 
