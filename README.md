@@ -1,5 +1,35 @@
 # Getting Started with Create React App
 
+#Deploy Link 
+<a href="https://tericsoft-crud-app.vercel.app/">https://tericsoft-crud-app.vercel.app/</a>
+
+
+<h1>TECH STACK</h1>
+
+<p>REACT JS</p>
+
+<p>MongoDB</p>
+
+<p>Express JS</p>
+
+<p>Node JS</p>
+
+<p>HEROKU MOCK SERVER</p>
+
+# To run Backend cd backend ==>> npm run servers
+
+# To run frondend npm start
+
+# github link 
+# <a href="https://github.com/Harshsanas/Tericsoft-CrudApp.git"> https://github.com/Harshsanas/Tericsoft-CrudApp.git
+  
+# Git Clone https://github.com/Harshsanas/Tericsoft-CrudApp.git
+
+  
+# for start application >> ..cd npm i >> npm start http://localhost:3000/
+ 
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
