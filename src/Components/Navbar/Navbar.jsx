@@ -12,6 +12,8 @@ import FormLabel from "@mui/material/FormLabel";
 import Radio from "@mui/material/Radio";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Checkbox from "@mui/material/Checkbox";
+import axios from "axios"
+
 import RadioGroup from "@mui/material/RadioGroup";
 
 const NAVBAR = styled.div`
@@ -35,7 +37,6 @@ const NAVBAR = styled.div`
     cursor: pointer;
     color: #ffffff;
     font-size: 20px;
-    font-weight: 500;
     text-decoration: none;
   }
 
@@ -78,16 +79,54 @@ const radioBtn = {
 
 }
 
-
+const obj={
+  name:"",
+  email:"",
+  mobile:"",
+  gender:"",
+  hobbies:"",
+};
 
 export default function Navbar() {
     
+
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
-  const[email,setEmail] = useState();
-    const handleChange = (event) => {
-      setEmail(event.target.value)
+
+  
+  const [form, setForm] = useState(obj);
+    const handleChange = (e) => {
+    const { name, value, checked} = e.target;
+       
+
+        if(name==="gender"){
+          setForm({
+            ...form,
+            [name] : checked ,
+          });
+        }else{
+          setForm({...form, [name]: value})
+        }
+
+        console.log(form)
     };
+
+    const handleSubmit=(e)=>{
+      
+    e.preventDefault();
+    console.log(form)
+
+    axios
+      .post("https://mytericsoftserver.herokuapp.com/data", form)
+      .then((res) => {
+        console.log(form);
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
+      setOpen(false);
+    }
+    
+    
 
   const handleClose = () => setOpen(false);
   return (
@@ -111,108 +150,131 @@ export default function Navbar() {
           <button onClick={handleOpen}>Add Employee</button>
         </div>
       </NAVBAR>
-      <Modal open={open} onClose={handleClose}>
-        <Box sx={style}>
-          <Typography variant="h5" component="h4">
-            Add Employee Deatils
-          </Typography>
-          <TextField
-            sx={{
-              "& > :not(style)": { width: "40ch" },
-            }}
-            label="Enter Name"
-            variant="standard"
-          />
-          <br />
-          <br />
-          <TextField
-            sx={{
-              "& > :not(style)": { width: "40ch" },
-            }}
-            label="Email"
-            variant="standard"
-            onChange={handleChange}
-            name="email"
-            value={email}
-            validators={["required", "isEmail"]}
-            errorMessages={["this field is required", "email is not valid"]}
-          />
-          <br />
-          <br />
-          <TextField
-            sx={{
-              "& > :not(style)": { width: "40ch" },
-            }}
-            label="Enter Mobile no."
-            variant="standard"
-          />
-          <br />
-          <br />
-          <br />
-          <FormControl sx={radioBtn}>
-            <FormLabel component="legend">Gender</FormLabel>
-            <RadioGroup
-              row
-              aria-label="gender"
-              defaultValue="female"
-              size="small"
-              name="radio-buttons-group"
-            >
-              <FormControlLabel
-                value="female"
-                control={<Radio />}
-                label="Female"
-              />
-              <FormControlLabel value="male" control={<Radio />} label="Male" />
-              <FormControlLabel
-                value="other"
-                control={<Radio />}
-                label="Other"
-              />
-            </RadioGroup>
-
+      <form onSubmit={handleSubmit}>
+        <Modal open={open} onClose={handleClose}>
+          <Box sx={style}>
+            <Typography variant="h5" component="h4">
+              Add Employee Details
+            </Typography>
+            <TextField
+              sx={{
+                "& > :not(style)": { width: "40ch" },
+              }}
+              label="Enter Name"
+              onChange={handleChange}
+              variant="standard"
+              required
+              name="name"
+            />
             <br />
-            <FormLabel component="legend">HOBBIES</FormLabel>
-            <FormControlLabel
-              value="Playing"
-              control={<Checkbox />}
-              label="Playing"
-              labelPlacement="Playing"
+            <br />
+            <TextField
+              sx={{
+                "& > :not(style)": { width: "40ch" },
+              }}
+              label="Email"
+              variant="standard"
+              onChange={handleChange}
+              name="email"
+              required
+              validators={["required", "isEmail"]}
+              errorMessages={["this field is required", "email is not valid"]}
             />
-            <FormControlLabel
-              value="Music"
-              control={<Checkbox />}
-              label="Music"
-              labelPlacement="Music"
+            <br />
+            <br />
+            <TextField
+              sx={{
+                "& > :not(style)": { width: "40ch" },
+              }}
+              label="Enter Mobile no."
+              variant="standard"
+              name="mobile"
+              required
+              onChange={handleChange}
             />
-            <FormControlLabel
-              value="Road-Trip"
-              control={<Checkbox />}
-              label="Road-Trip"
-              labelPlacement="Road-Trip"
-            />
-            <FormControlLabel
-              value="Coding"
-              control={<Checkbox />}
-              label="Coding"
-              labelPlacement="Coding"
-            />
-          </FormControl>
-          <br />
-          <ButtonGroup
-            sx={btnStyle}
-            variant="text"
-            aria-label="text button group"
-          >
-            <div>
-              <Button>ADD DETAILS</Button>
-            </div>
-            <div>
-              <Button>CLOSE</Button>
-            </div>
-          </ButtonGroup>
-        </Box>
-      </Modal>
+            <br />
+            <br />
+            <br />
+            <FormControl sx={radioBtn}>
+              <FormLabel component="legend">Gender</FormLabel>
+              <RadioGroup
+                row
+                aria-label="gender"
+                defaultValue="female"
+                size="small"
+                name="radio-buttons-group"
+                type="radiobtn"
+              >
+                <FormControlLabel
+                  value="Female"
+                  control={<Radio />}
+                  label="Female"
+                  name="female"
+                  onChange={handleChange}
+                />
+                <FormControlLabel
+                  value="Male"
+                  control={<Radio />}
+                  name="male"
+                  label="Male"
+                  onChange={handleChange}
+                />
+                <FormControlLabel
+                  value="Other"
+                  control={<Radio />}
+                  onChange={handleChange}
+                  label="Other"
+                  name="other"
+                />
+              </RadioGroup>
+
+              <br />
+              <FormLabel component="legend">HOBBIES</FormLabel>
+              <FormControlLabel
+                value="Playing"
+                type="checkbox"
+                control={<Checkbox />}
+                label="Playing"
+                labelPlacement="Playing"
+              />
+              <FormControlLabel
+                value="Music"
+                type="checkbox"
+                control={<Checkbox />}
+                label="Music"
+                labelPlacement="Music"
+              />
+              <FormControlLabel
+                value="Road-Trip"
+                control={<Checkbox />}
+                type="checkbox"
+                label="Road-Trip"
+                labelPlacement="Road-Trip"
+              />
+              <FormControlLabel
+                value="Coding"
+                control={<Checkbox />}
+                type="checkbox"
+                label="Coding"
+                labelPlacement="Coding"
+              />
+            </FormControl>
+            <br />
+            <ButtonGroup
+              sx={btnStyle}
+              variant="text"
+              aria-label="text button group"
+            >
+              <div>
+                <Button onClick={handleSubmit}>ADD DETAILS</Button>
+              </div>
+              <div>
+                <Button onClick={handleClose}>CLOSE</Button>
+              </div>
+            </ButtonGroup>
+          </Box>
+        </Modal>
+      </form>
     </div>
   );
 }
