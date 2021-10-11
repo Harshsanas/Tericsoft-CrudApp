@@ -102,7 +102,7 @@ export default function Navbar() {
         if(name==="gender"){
           setForm({
             ...form,
-            [name] : checked ,
+            [name] : value ,
           });
         }else{
           setForm({...form, [name]: value})
@@ -233,19 +233,25 @@ export default function Navbar() {
               <FormControlLabel
                 value="Playing"
                 type="checkbox"
+                name="hobbies"
+                onChange={handleChange}
                 control={<Checkbox />}
                 label="Playing"
                 labelPlacement="Playing"
               />
               <FormControlLabel
                 value="Music"
+                onChange={handleChange}
                 type="checkbox"
+                name="hobbies"
                 control={<Checkbox />}
                 label="Music"
                 labelPlacement="Music"
               />
               <FormControlLabel
                 value="Road-Trip"
+                onChange={handleChange}
+                name="hobbies"
                 control={<Checkbox />}
                 type="checkbox"
                 label="Road-Trip"
@@ -254,6 +260,8 @@ export default function Navbar() {
               <FormControlLabel
                 value="Coding"
                 control={<Checkbox />}
+                onChange={handleChange}
+                name="hobbies"
                 type="checkbox"
                 label="Coding"
                 labelPlacement="Coding"
