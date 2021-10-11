@@ -13,8 +13,9 @@ import { useState, useEffect } from 'react'
 import DeleteIcon from "@mui/icons-material/Delete";
 const useStyles = makeStyles({
   root: {
-    width: "90%",
-    margin: "20px auto",
+    width: "80%",
+    border: "1px solid whitesmoke",
+    margin: "50px auto",
   },
   container: {
     maxHeight: 440,

@@ -3,6 +3,16 @@
 #Deploy Link 
 <a href="https://tericsoft-crud-app.vercel.app/">https://tericsoft-crud-app.vercel.app/</a>
 
+<h2>TERICSOFT - EMPLOYEEMENT DETAILS FORM</h2>
+
+
+<h3>Employee Details in Tabular format</h3>
+<img src="/image1.png" alt="img">
+
+
+<h3>Employee Details Form</h3>
+<img src="/image2.png" alt="img">
+
 
 <h1>TECH STACK</h1>
 
