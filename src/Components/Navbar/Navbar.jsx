@@ -96,7 +96,7 @@ export default function Navbar() {
   
   const [form, setForm] = useState(obj);
     const handleChange = (e) => {
-    const { name, value, checked} = e.target;
+    const { name, value} = e.target;
        
 
         if(name==="gender"){
