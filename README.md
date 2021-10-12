@@ -26,7 +26,7 @@
 
 <p>HEROKU MOCK SERVER</p>
 
-# To run Backend cd backend ==>> npm run servers
+
 
 # To run frondend npm start
 
